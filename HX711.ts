@@ -67,8 +67,8 @@ namespace HX711 {
     read();
   }
 
-  export function shiftInSlow(bitOrder: number): uint8 {
-    let value: uint8 = 0;
+  export function shiftInSlow(bitOrder: number): number {
+    let value: number = 0;
     let i: number;
 
     for (i = 0; i < 8; ++i) {
@@ -93,7 +93,7 @@ namespace HX711 {
 
     // Define structures for reading data into.
     let value: number = 0;
-    let data: uint8[] = [0, 0, 0];
+    let data: number[] = [0, 0, 0];
     let filler: number = 0x00;
 
     // Protect the read sequence from system interrupts.  If an interrupt occurs during
@@ -135,15 +135,11 @@ namespace HX711 {
     }
 
     // Replicate the most significant bit to pad out a 32-bit signed integer
-    if (data[2] & 0x80) {
-      filler = 0xff;
-    } else {
-      filler = 0x00;
-    }
+
     data[2] = data[2] ^ 0x80; //shift MSB
 
     // Construct a 32-bit signed integer
-    value = (filler << 24) | (data[2] << 16) | (data[1] << 8) | data[0];
+    value = (data[2] << 16) | (data[1] << 8) | data[0];
     //value = ((filler * 16777216) + (data[2] * 65536) + (data[1] * 256) + (data[0]))
 
     return value;
