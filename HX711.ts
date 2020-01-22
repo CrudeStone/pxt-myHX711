@@ -11,9 +11,9 @@ namespace HX711 {
   let GAIN: number = 0.0;
   let OFFSET: number = 0; // used for tare weight
   let SCALE: number = 1; // used to return weight in grams, kg, ounces, whatever
-  let DATA2: number =0;
-  let DATA1: number =0;
-  let DATA0: number =0;
+  let DATA2: uint8 =0;
+  let DATA1: uint8 =0;
+  let DATA0: uint8 =0;
 
   /**
    * Query data from HX711 module.
