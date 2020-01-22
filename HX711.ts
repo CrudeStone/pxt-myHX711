@@ -92,9 +92,9 @@ namespace HX711 {
     wait_ready(0);
 
     // Define structures for reading data into.
-    let value: number = 0;
-    let data: number[] = [0, 0, 0];
-    let filler: number = 0x00;
+    let value: uint32  = 0;
+    let data: uint8[] = [0, 0, 0];
+    let filler: uint8 = 0x00;
 
     // Protect the read sequence from system interrupts.  If an interrupt occurs during
     // the time the PD_SCK signal is high it will stretch the length of the clock pulse.
@@ -146,7 +146,7 @@ namespace HX711 {
     value = (filler << 24) | (data[2] << 16) | (data[1] << 8) | data[0];
     //value = ((filler * 16777216) + (data[2] * 65536) + (data[1] * 256) + (data[0]))
 
-    return value;
+    return value as number;
   }
 
   export function wait_ready(delay_ms: number) {
