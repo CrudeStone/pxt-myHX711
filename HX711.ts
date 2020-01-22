@@ -146,7 +146,7 @@ namespace HX711 {
     value = (filler << 24) | (data[2] << 16) | (data[1] << 8) | data[0];
     //value = ((filler * 16777216) + (data[2] * 65536) + (data[1] * 256) + (data[0]))
 
-    return value as number;
+    return value;
   }
 
   export function wait_ready(delay_ms: number) {
