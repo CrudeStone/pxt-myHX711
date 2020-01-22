@@ -1,11 +1,16 @@
 {
-  "name": "pxt-HX711",
-  "version": "1.1.0",
-  "description": "Fixed bug",
-  "dependencies": {
-    "core": "*"
-  },
-  "files": ["README.md", "HX711.ts"],
-  "testFiles": ["test.ts"],
-  "public": true
+    "name": "pxt-HX711",
+    "version": "1.1.1",
+    "description": "Fixed bug",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "HX711.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
 }
