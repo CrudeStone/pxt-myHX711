@@ -1,6 +1,6 @@
 {
     "name": "pxt-HX711",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Fixed bug",
     "dependencies": {
         "core": "*"
