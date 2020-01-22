@@ -11,9 +11,9 @@ namespace HX711 {
   let GAIN: number = 0.0;
   let OFFSET: number = 0; // used for tare weight
   let SCALE: number = 1; // used to return weight in grams, kg, ounces, whatever
-  let DATA2: uint8 =0;
-  let DATA1: uint8 =0;
-  let DATA0: uint8 =0;
+  let DATA2: number =0;
+  let DATA1: number =0;
+  let DATA0: number =0;
 
   /**
    * Query data from HX711 module.
@@ -92,9 +92,9 @@ namespace HX711 {
     wait_ready(0);
 
     // Define structures for reading data into.
-    let value: uint32  = 0;
-    let data: uint8[] = [0, 0, 0];
-    let filler: uint8 = 0x00;
+    let value: number  = 0;
+    let data: number[] = [0, 0, 0];
+    let filler: number = 0x00;
 
     // Protect the read sequence from system interrupts.  If an interrupt occurs during
     // the time the PD_SCK signal is high it will stretch the length of the clock pulse.
