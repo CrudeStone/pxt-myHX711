@@ -11,9 +11,6 @@ namespace HX711 {
   let GAIN: number = 0.0;
   let OFFSET: number = 0; // used for tare weight
   let SCALE: number = 1; // used to return weight in grams, kg, ounces, whatever
-  let DATA2: number =0;
-  let DATA1: number =0;
-  let DATA0: number =0;
 
   /**
    * Query data from HX711 module.
@@ -92,7 +89,7 @@ namespace HX711 {
     wait_ready(0);
 
     // Define structures for reading data into.
-    let value: number  = 0;
+    let value: number = 0;
     let data: number[] = [0, 0, 0];
     let filler: number = 0x00;
 
@@ -136,13 +133,9 @@ namespace HX711 {
     } else {
       filler = 0x00;
     }
-    //data[2] = data[2] ^ 0x80 //shift MSB
+    data[2] = data[2] ^ 0x80; //shift MSB
 
     // Construct a 32-bit signed integer
-    ‭DATA2 = data[2];
-    DATA1 = data[1];
-    DATA0 = data[0];
-
     value = (filler << 24) | (data[2] << 16) | (data[1] << 8) | data[0];
     //value = ((filler * 16777216) + (data[2] * 65536) + (data[1] * 256) + (data[0]))
 
@@ -215,12 +208,12 @@ namespace HX711 {
 
     valor = get_value(times) / SCALE;
     /* if (Math.abs(Math.round((valor - Math.trunc(valor)) * 100)).toString().length == 0) {
-            ceros = "00"
-         } else if (Math.abs(Math.round((valor - Math.trunc(valor)) * 100)).toString().length == 1) {
-            ceros = "0"
-         }
-    valor_string = "" + Math.trunc(valor).toString() + "." + ceros + Math.abs(Math.round((valor - Math.trunc(valor)) * 100)).toString()
-     */
+          ceros = "00"
+       } else if (Math.abs(Math.round((valor - Math.trunc(valor)) * 100)).toString().length == 1) {
+          ceros = "0"
+       }
+  valor_string = "" + Math.trunc(valor).toString() + "." + ceros + Math.abs(Math.round((valor - Math.trunc(valor)) * 100)).toString()
+   */
     return valor;
   }
 
@@ -237,28 +230,6 @@ namespace HX711 {
   export function set_scale(scale: number) {
     SCALE = scale;
   }
-
-
-  
-  //% blockId="HX711_GET_DATA2" block="get data2"
-  //% weight=80 blockGap=8
-  export function get_data2(): number {
-    return DATA2;
-  }
-
-  //% blockId="HX711_GET_DATA1" block="get data1"
-  //% weight=80 blockGap=8
-  export function get_data1(): number {
-    return DATA1;
-  }
-
-  //% blockId="HX711_GET_DATA0" block="get data0"
-  //% weight=80 blockGap=8
-  export function get_data0(): number {
-    return DATA0;
-  }
-
-
 
   //% blockId="HX711_GET_SCALE" block="get scale"
   //% weight=80 blockGap=8
