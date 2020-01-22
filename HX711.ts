@@ -67,8 +67,8 @@ namespace HX711 {
     read();
   }
 
-  export function shiftInSlow(bitOrder: number): number {
-    let value: number = 0;
+  export function shiftInSlow(bitOrder: number): uint8 {
+    let value: uint8 = 0;
     let i: number;
 
     for (i = 0; i < 8; ++i) {
@@ -93,7 +93,7 @@ namespace HX711 {
 
     // Define structures for reading data into.
     let value: number = 0;
-    let data: number[] = [0, 0, 0];
+    let data: uint8[] = [0, 0, 0];
     let filler: number = 0x00;
 
     // Protect the read sequence from system interrupts.  If an interrupt occurs during
