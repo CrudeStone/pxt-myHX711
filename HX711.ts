@@ -11,6 +11,9 @@ namespace HX711 {
   let GAIN: number = 0.0;
   let OFFSET: number = 0; // used for tare weight
   let SCALE: number = 1; // used to return weight in grams, kg, ounces, whatever
+  let DATA2: uint8 = 0;
+  let DATA1: uint8 = 0;
+  let DATA0: uint8 = 0;
 
   /**
    * Query data from HX711 module.
@@ -117,6 +120,10 @@ namespace HX711 {
     data[2] = shiftInSlow(1);
     data[1] = shiftInSlow(1);
     data[0] = shiftInSlow(1);
+
+    DATA2 = data[2];
+    DATA1 = data[1];
+    DATA0 = data[0];
 
     // Set the channel and the gain factor for the next reading using the clock pin.
     let i: number = 0;
@@ -229,6 +236,24 @@ namespace HX711 {
   //% weight=80 blockGap=8
   export function set_scale(scale: number) {
     SCALE = scale;
+  }
+
+  //% blockId="HX711_GET_DATA2" block="get data2"
+  //% weight=80 blockGap=8
+  export function get_data2(): uint8 {
+    return DATA2;
+  }
+
+  //% blockId="HX711_GET_DATA1" block="get data1"
+  //% weight=80 blockGap=8
+  export function get_data1(): uint8 {
+    return DATA1;
+  }
+
+  //% blockId="HX711_GET_DATA0" block="get data0"
+  //% weight=80 blockGap=8
+  export function get_data0(): uint8 {
+    return DATA0;
   }
 
   //% blockId="HX711_GET_SCALE" block="get scale"
